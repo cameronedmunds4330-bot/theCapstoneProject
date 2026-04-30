@@ -1,0 +1,6 @@
+Name,Address,City,State,Zip,Phone,Email
+Client 1,123 Main St,Salt Lake City,UT,84101,801-555-0001,client1@example.com
+Client 2,456 Oak Ave,Provo,UT,84601,801-555-0002,client2@example.com
+Client 3,789 Pine Rd,Orem,UT,84057,801-555-0003,client3@example.com
+Client 4,321 Elm St,Lehi,UT,84043,801-555-0004,client4@example.com
+Client 5,654 Maple Dr,Sandy,UT,84070,801-555-0005,client5@example.com

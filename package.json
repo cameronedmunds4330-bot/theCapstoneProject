@@ -1,0 +1,30 @@
+{
+  "name": "thecapstoneproject",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "TheCaseWork Automation Test Suite",
+  "scripts": {
+    "test": "wdio run wdio.conf.js",
+    "test:account-menu": "wdio run wdio.conf.js --spec test/specs/01-user-account-menu.test.js",
+    "test:clients-crud": "wdio run wdio.conf.js --spec test/specs/02-clients-crud.test.js",
+    "test:clients-import": "wdio run wdio.conf.js --spec test/specs/03-clients-import.test.js",
+    "test:clients-search": "wdio run wdio.conf.js --spec test/specs/04-clients-search.test.js",
+    "test:case-types": "wdio run wdio.conf.js --spec test/specs/05-case-data-types.test.js",
+    "test:tooltips": "wdio run wdio.conf.js --spec test/specs/06-info-tooltips.test.js",
+    "test:logout": "wdio run wdio.conf.js --spec test/specs/07-logout.test.js"
+  },
+  "keywords": [
+    "webdriverio",
+    "automation",
+    "testing",
+    "casework"
+  ],
+  "author": "Cameron Edmunds",
+  "license": "ISC",
+  "devDependencies": {
+    "@wdio/cli": "^9.5.0",
+    "@wdio/local-runner": "^9.5.0",
+    "@wdio/mocha-framework": "^9.5.0",
+    "@wdio/spec-reporter": "^9.5.0"
+  }
+}

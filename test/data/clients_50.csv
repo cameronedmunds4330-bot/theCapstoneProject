@@ -1,0 +1,61 @@
+Name,Address1,Address2,City,State,Zip,Country,Phone,Url,ContactName,ContactTitle,ContactEmail,ContactPhone
+Deepwater Analytics,1976 Enterprise Ct,Floor 2,Syracuse,NY,13201,US,555-214-5808,https://deepwater.tech,James Castillo,VP of Sales,james.castillo@deepwater.net,555-619-2743
+Redwood Corp,8417 Market St,Ste 202,Richmond,VA,23218,US,555-265-9837,,Jacqueline Ford,CEO,jacqueline.ford@redwood.org,555-600-1319
+Redwood Corp,,,,,,,,,Joshua Marshall,Director of HR,joshua.marshall@redwood.biz,555-345-1949
+Cedar Media,9395 Pine Rd,Suite 300,Charleston,WV,25301,US,555-170-9727,https://cedar.net,Joan Peterson,Project Manager,joan.peterson@cedar.biz,555-640-7932
+Cedar Media,,,,,,,,,Eric Marshall,Head of Finance,eric.marshall@cedar.co,555-830-6107
+Golden Design,6218 Harbor Dr,Unit 10,Colorado Springs,CO,80901,US,555-330-2049,https://golden.co,Joe Lewis,CEO,joe.lewis@golden.io,555-824-1964
+Brightpath Consulting,614 Lake Dr,Suite 300,Mobile,AL,36601,US,555-785-8953,https://brightpath.net,Bruce Kelly,Associate,bruce.kelly@brightpath.co,555-903-8749
+Diamond Services,1645 Birch Blvd,#400,Wichita,KS,67201,US,555-520-8651,,Barbara Gray,Director,barbara.gray@diamond.com,555-512-6559
+Atlas Technologies,3239 Poplar Ave,Unit 15,Colorado Springs,CO,80901,US,555-287-5563,https://atlas.io,,,,
+Crystal Development,9116 Birch Blvd,Suite 200,Burlington,VT,05401,US,,https://crystal.io,Larry Perez,Branch Manager,larry.perez@crystal.tech,555-592-4502
+Golden Media,1060 Willow Dr,,Springfield,IL,62701,US,,https://golden.tech,,,,
+Pacific Advisors,9205 Industrial Pkwy,,Louisville,KY,40201,US,555-159-9883,https://pacific.org,Daniel Miller,Associate,daniel.miller@pacific.net,555-158-9320
+Pacific Advisors,,,,,,,,,Mark Henderson,Account Manager,mark.henderson@pacific.io,555-709-2113
+Tidewater Digital,3953 Valley Rd,,Virginia Beach,VA,23450,US,555-708-1651,https://tidewater.us,Frances Reed,Head of Design,frances.reed@tidewater.org,555-367-4346
+Windward Labs,5247 Magnolia Blvd,,Durham,NC,27701,US,555-760-5915,https://windward.io,Robert Collins,Director,robert.collins@windward.io,555-650-4492
+Frontier Enterprises,2270 River Rd,,Fresno,CA,93650,US,555-261-8179,https://frontier.biz,Willie Russell,Head of Design,willie.russell@frontier.com,555-783-5905
+Cloudpeak Group,2300 Sycamore St,,Boise,ID,,US,555-259-5462,https://cloudpeak.co,Debra Clark,VP of Sales,debra.clark@cloudpeak.tech,555-357-1832
+Meridian Engineering,7039 Laurel Dr,,Springfield,IL,,US,555-233-5291,https://meridian.tech,Teresa Price,Office Manager,teresa.price@meridian.com,555-214-2232
+Firelight Media,2542 Enterprise Ct,,Fort Worth,TX,,US,555-251-8041,https://firelight.biz,Janet Stevens,CTO,janet.stevens@firelight.org,555-315-5088
+Firelight Media,,,,,,,,,Andrew Rivera,Head of Compliance,andrew.rivera@firelight.us,555-735-3532
+Cedar Digital,2762 Ash St,,,,97201,US,555-440-7745,https://cedar.co,,,,
+Southpoint Holdings,1871 Mountain View Dr,,,,72201,US,555-936-8541,https://southpoint.co,Laura Brown,Controller,laura.brown@southpoint.us,555-436-5564
+Crestline Logistics,4673 River Rd,,,,,US,555-963-9785,https://crestline.com,Sandra Vasquez,VP of Sales,sandra.vasquez@crestline.net,555-694-5349
+Vanguard Group,9874 Ocean Ave,,,,,US,555-546-9379,https://vanguard.co,,,,
+Westfield Solutions,7244 Main St,Unit 10,Charleston,SC,29401,US,555-859-4228,https://westfield.io,Dennis Richardson,Director of Sales,dennis.richardson@westfield.io,555-837-5920
+Westfield Solutions,,,,,,,,,Andrea Flores,Branch Manager,andrea.flores@westfield.org,555-512-5844
+Phoenix Partners,3243 Sunset Blvd,#400,Plano,TX,75023,US,555-278-5930,https://phoenix.com,Nicole Torres,Treasurer,nicole.torres@phoenix.us,555-904-6279
+Amber International,7344 Chestnut Rd,Unit 10,Little Rock,AR,72201,US,555-915-3780,https://amber.biz,Cheryl James,Director of Marketing,cheryl.james@amber.io,555-938-4848
+Tidewater Corp,3780 Poplar Ave,Suite 500,Portland,OR,97201,US,555-586-2193,https://tidewater.co,,,,
+Synapse Labs,6391 Industrial Pkwy,Bldg B,Fresno,CA,93650,US,555-804-1090,,Margaret Jimenez,Office Manager,margaret.jimenez@synapse.co,555-280-9486
+Amber Solutions,9232 Magnolia Blvd,Suite 400,Aurora,CO,80010,US,555-575-9702,,Logan Green,Partner,logan.green@amber.us,555-950-9976
+Onyx Media,2707 Commerce Blvd,Unit 1,Chandler,AZ,85224,US,555-960-5543,https://onyx.tech,Eugene Walker,VP of Marketing,eugene.walker@onyx.tech,555-179-5681
+Cedar Enterprises,5602 Park Ave,Unit 15,Tampa,FL,33601,US,555-336-7275,https://cedar.co,Matthew Turner,Branch Manager,matthew.turner@cedar.org,555-655-8633
+Platinum Solutions,3488 Sunset Blvd,,Syracuse,NY,13201,US,555-812-1320,,Madison Carter,Associate,madison.carter@platinum.com,555-460-5892
+Logicware Associates,6965 Enterprise Ct,,Missoula,MT,59801,US,555-599-4595,https://logicware.tech,,,,
+Summit Associates,5607 Valley Rd,,Lakewood,CO,80226,US,,,Lawrence Brown,Regional Manager,lawrence.brown@summit.com,555-185-8022
+Forge Digital,7664 Ash St,,Chandler,AZ,85224,US,555-316-8449,https://forge.us,Brenda Long,Branch Manager,brenda.long@forge.biz,555-954-2341
+Titan Industries,8937 Maple Dr,,Albuquerque,NM,87101,US,555-899-1659,https://titan.co,Stephanie Butler,CFO,stephanie.butler@titan.net,555-344-3068
+Titan Industries,,,,,,,,,Joan Bennett,Managing Director,joan.bennett@titan.co,555-576-5198
+Techvault Inc,2849 Market St,,Harrisburg,PA,,US,555-896-3683,,Margaret Howard,CFO,margaret.howard@techvault.biz,555-689-7149
+Sterling Labs,3349 Cedar Ln,,Stamford,CT,,US,555-348-2669,https://sterling.biz,Janice Russell,Managing Director,janice.russell@sterling.com,555-455-9728
+Sterling Labs,,,,,,,,,Joyce James,Director of HR,joyce.james@sterling.io,555-618-6590
+Zenith Digital,6982 Industrial Pkwy,,Wichita,KS,,US,,https://zenith.tech,Donna Parker,Account Manager,donna.parker@zenith.biz,555-730-9817
+Nanocore Dynamics,7716 Ocean Ave,,,,85250,US,555-351-2419,https://nanocore.tech,,,,
+Lakeview Logistics,7713 Business Park Rd,,,,03101,US,555-129-9098,,Ryan Morales,Treasurer,ryan.morales@lakeview.org,555-916-5232
+Prairie Enterprises,9867 Laurel Dr,,,,,US,555-295-2402,https://prairie.us,,,,
+Liberty Capital,4037 Commerce Blvd,,,,,US,555-911-1282,https://liberty.co,,,,
+Golden Labs,4086 Holly Ave,#400,Sioux Falls,SD,57101,US,555-666-9698,https://golden.org,Aaron Hughes,Principal,aaron.hughes@golden.biz,555-413-5118
+Brightpath Group,3255 Park Ave,Suite 400,Harrisburg,PA,17101,US,555-880-4033,https://brightpath.tech,Samuel Castillo,Head of Design,samuel.castillo@brightpath.biz,555-202-4180
+Atlantic Technologies,6012 Ash St,Floor 3,Denver,CO,80202,US,555-229-5494,https://atlantic.com,Teresa Nguyen,General Manager,teresa.nguyen@atlantic.tech,555-205-1200
+Atlantic Technologies,,,,,,,,,Bruce Torres,Associate,bruce.torres@atlantic.tech,555-551-6582
+Horizon Solutions,4236 Commerce Blvd,Suite 400,Atlanta,GA,30301,US,555-175-1878,https://horizon.biz,Nancy Young,Managing Director,nancy.young@horizon.us,555-720-4697
+Nanocore Ventures,6332 Harbor Dr,Unit 1,Lehi,UT,84043,US,555-539-6003,https://nanocore.com,Willie Patel,Director,willie.patel@nanocore.co,555-740-4457
+Eastmark Design,1430 Willow Dr,Ste 303,Tulsa,OK,74101,US,555-260-1043,https://eastmark.tech,Frank Jones,Secretary,frank.jones@eastmark.biz,555-823-5632
+Shadowcrest Digital,7538 Cedar Ln,#400,Sacramento,CA,95801,US,,https://shadowcrest.co,Ethan Anderson,Head of Finance,ethan.anderson@shadowcrest.co,555-763-3441
+Shadowcrest Digital,,,,,,,,,Benjamin Bell,Operations Manager,benjamin.bell@shadowcrest.io,555-161-3718
+Highland Management,9425 Juniper Way,Unit 1,Indianapolis,IN,46201,US,555-411-7594,,Carl Cooper,Analyst,carl.cooper@highland.tech,555-182-1653
+Emerald Analytics,5380 Market St,,Portland,OR,97201,US,555-790-1339,,Benjamin Kelly,CTO,benjamin.kelly@emerald.net,555-581-9502
+Emerald Analytics,,,,,,,,,Victoria Ford,VP of Marketing,victoria.ford@emerald.net,555-699-8141
+Sunstone Creative,8156 Pine Rd,,Eugene,OR,97401,US,555-428-2713,,,,,
