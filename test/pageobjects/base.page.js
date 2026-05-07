@@ -5,7 +5,13 @@ export default class BasePage {
 
     async waitAndClick(selector) {
         await selector.waitForDisplayed({ timeout: 15000 })
+        await selector.waitForClickable({ timeout: 15000 })
         await selector.click()
+    }
+
+    async jsClick(selector) {
+        await selector.waitForExist({ timeout: 15000 })
+        await browser.execute((el) => el.click(), selector)
     }
 
     async waitAndSetValue(selector, value) {
