@@ -10,22 +10,16 @@ describe('Clients CRUD Operations - Test Case 2', () => {
         await ClientsPage.navigate()
     })
 
-    // ══════════════════════════════════════════════════════════
-    // TC-06: Create New Client with Contact
-    // Testing Technique: Positive Testing, CRUD Operations, Integration Testing
-    // Jira: MTQA-5420
-    // ══════════════════════════════════════════════════════════
     it('should create a new client with all details and add a contact', async () => {
         await ClientsPage.clickCreate()
 
-        // PDF pages 3-4: exact field values used in the test case doc
         const clientData = {
             name: 'test',
             address: 'test 123',
             city: 'test city',
             state: 'utah',
             zip: '84095',
-            url: 'www.test.com',      // plain string — NOT a markdown link
+            url: 'www.test.com',      
             phone: '(801) 888-8888'
         }
 
@@ -82,13 +76,8 @@ describe('Clients CRUD Operations - Test Case 2', () => {
         await expect(deleteToast).toBeDisplayed()
     })
 
-    // ══════════════════════════════════════════════════════════
-    // TC-07: Verify Select All Functionality
-    // Testing Technique: Positive Testing, UI Interaction
-    // Jira: MTQA-5712 (Test Case 13 in PDF)
-    // ══════════════════════════════════════════════════════════
     it('should select and deselect all clients using checkbox', async () => {
-        // Make sure the table has loaded before interacting with the checkbox
+
         await browser.waitUntil(
             async () => (await ClientsPage.getTableRowCount()) > 0,
             { timeout: 15000, timeoutMsg: 'Client table did not load within 15 seconds' }

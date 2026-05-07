@@ -20,21 +20,20 @@ describe('Case Types – Test Case 8', () => {
         const name = 'Automation Case Type'
         const updated = 'Updated Case Type'
 
-        //
+
         // CREATE
-        //
+
         await CaseTypesPage.createCaseType(name, 'Test description')
         await expect(CaseTypesPage.rowByName(name)).toBeDisplayed()
 
-        //
+
         // EDIT
-        //
+
         await CaseTypesPage.editCaseType(name, updated)
         await expect(CaseTypesPage.rowByName(updated)).toBeDisplayed()
 
-        //
         // DELETE
-        //
+
         await CaseTypesPage.deleteCaseType(updated)
 
         // Row should no longer exist

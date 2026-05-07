@@ -2,7 +2,6 @@ import BasePage from './base.page.js'
 
 class CaseTypesPage extends BasePage {
 
-    // ── Selectors ─────────────────────────────────────────────────────────────
 
     get caseDataTab() {
         return $('[data-testid="account-settings-case-data-tab"]')
@@ -32,28 +31,16 @@ class CaseTypesPage extends BasePage {
         return $('[data-testid="add-edit-case-type-cancel-button"]')
     }
 
-    // ── Navigation ────────────────────────────────────────────────────────────
-
-    /**
-     * open() navigates directly to the settings URL, waits for the page to
-     * fully render, THEN clicks the Case Types tab.
-     *
-     * The previous implementation only clicked the tab without first ensuring
-     * the settings page was loaded — so if another parallel worker had the
-     * same session or the nav item wasn't visible yet, the click failed.
-     */
     async open() {
         await browser.url('/account/settings')
         await browser.pause(1500)
 
-        // Wait until the tab itself is in the DOM before trying to click it
+
         await this.caseTypesTab.waitForExist({ timeout: 15000 })
         await this.caseTypesTab.waitForClickable({ timeout: 15000 })
         await this.caseTypesTab.click()
         await browser.pause(1000)
     }
-
-    // ── Row helpers ───────────────────────────────────────────────────────────
 
     rowByName(name) {
         return $(`[data-testid="case-data-type-${name}"]`)
@@ -66,8 +53,6 @@ class CaseTypesPage extends BasePage {
     deleteButtonInRow(name) {
         return this.rowByName(name).$('button[aria-label="Delete"]')
     }
-
-    // ── CRUD ──────────────────────────────────────────────────────────────────
 
     async createCaseType(name, description) {
         await this.addButton.waitForClickable({ timeout: 10000 })

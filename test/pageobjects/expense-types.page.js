@@ -2,7 +2,6 @@ import BasePage from './base.page.js'
 
 class ExpenseTypesPage extends BasePage {
 
-    // ── Selectors ─────────────────────────────────────────────────────────────
 
     get caseDataTab() {
         return $('[data-testid="account-settings-case-data-tab"]')
@@ -36,20 +35,17 @@ class ExpenseTypesPage extends BasePage {
         return $('[data-testid="add-edit-expense-type-cancel-button"]')
     }
 
-    // ── Navigation ────────────────────────────────────────────────────────────
 
     async open() {
         // 1. Navigate to settings
         await browser.url('/account/settings')
         await browser.pause(1500)
 
-        // 2. Click the top-level "Case Data Types" tab to reveal sub-tabs
         await this.caseDataTab.waitForExist({ timeout: 15000 })
         await this.caseDataTab.waitForClickable({ timeout: 15000 })
         await this.caseDataTab.click()
         await browser.pause(1000)
 
-        // 3. Click "Expense Types" sub-tab — prefer data-testid, fall back to text
         const byId = this.expenseTypesTab
         const idExists = await byId.isExisting().catch(() => false)
 
@@ -66,7 +62,6 @@ class ExpenseTypesPage extends BasePage {
         await browser.pause(800)
     }
 
-    // ── Row helpers ───────────────────────────────────────────────────────────
 
     rowByName(name) {
         return $(`[data-testid="case-data-type-${name}"]`)
@@ -80,7 +75,6 @@ class ExpenseTypesPage extends BasePage {
         return this.rowByName(name).$('button[aria-label="Delete"]')
     }
 
-    // ── CRUD ──────────────────────────────────────────────────────────────────
 
     async createExpenseType(name, description) {
         await this.addButton.waitForClickable({ timeout: 10000 })
@@ -99,7 +93,7 @@ class ExpenseTypesPage extends BasePage {
     async editExpenseType(oldName, newName) {
         const editBtn = this.editButtonInRow(oldName)
         await editBtn.waitForClickable({ timeout: 10000 })
-        // Fluent UI hides action buttons until hover — JS click is reliable
+
         await browser.execute((el) => el.click(), editBtn)
 
         await this.nameInput.waitForDisplayed({ timeout: 10000 })

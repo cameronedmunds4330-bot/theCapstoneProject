@@ -39,10 +39,6 @@ class SettingsPage extends BasePage {
         await browser.pause(1000)
     }
 
-    /**
-     * isOnSettingsPage — checks URL and that at least one settings tab exists.
-     * The original relied on `.fui-Subtitle1=Account Info` which is fragile.
-     */
     async isOnSettingsPage() {
         try {
             const url = await browser.getUrl()

@@ -12,11 +12,8 @@ describe('Case Data Types - Test Cases 7-11', () => {
         await SettingsPage.navigateToCaseDataTypes()
     })
 
-    // ══════════════════════════════════════════════════════════
     // TC-14: Create New "New" Status with Character Limits
-    // Testing Technique: Positive Testing, Boundary Testing, Data Validation
-    // Jira: MTQA-5568
-    // ══════════════════════════════════════════════════════════
+
     it('should create a New case status with 50 char limit', async () => {
         const statusName = '1'.repeat(50)
         const description = '1'.repeat(200)
@@ -41,11 +38,9 @@ describe('Case Data Types - Test Cases 7-11', () => {
         await expect(CaseDataTypesPage.successToast).toBeDisplayed()
     })
 
-    // ══════════════════════════════════════════════════════════
     // TC-15: Create New "Active" Status
-    // Testing Technique: Positive Testing, CRUD Operations
-    // Jira: MTQA-5581
-    // ══════════════════════════════════════════════════════════
+  
+
     it('should create an Active case status successfully', async () => {
         const statusName = '1'.repeat(50)
         const description = '1'.repeat(200)
@@ -61,11 +56,8 @@ describe('Case Data Types - Test Cases 7-11', () => {
         await expect(CaseDataTypesPage.successToast).toBeDisplayed()
     })
 
-    // ══════════════════════════════════════════════════════════
     // TC-16: Create New "Completed" Status
-    // Testing Technique: Positive Testing, CRUD Operations
-    // Jira: MTQA-5588
-    // ══════════════════════════════════════════════════════════
+
     it('should create a Completed case status successfully', async () => {
         const statusName = '1'.repeat(50)
         const description = '1'.repeat(200)
@@ -81,11 +73,8 @@ describe('Case Data Types - Test Cases 7-11', () => {
         await expect(CaseDataTypesPage.successToast).toBeDisplayed()
     })
 
-    // ══════════════════════════════════════════════════════════
     // TC-17: Create New "Closed" Status
-    // Testing Technique: Positive Testing, CRUD Operations
-    // Jira: MTQA-5590
-    // ══════════════════════════════════════════════════════════
+
     it('should create a Closed case status successfully', async () => {
         const statusName = '1'.repeat(50)
         const description = '1'.repeat(200)
@@ -101,11 +90,8 @@ describe('Case Data Types - Test Cases 7-11', () => {
         await expect(CaseDataTypesPage.successToast).toBeDisplayed()
     })
 
-    // ══════════════════════════════════════════════════════════
     // TC-18: Create New "Removed" Status
-    // Testing Technique: Positive Testing, CRUD Operations
-    // Jira: MTQA-5594
-    // ══════════════════════════════════════════════════════════
+
     it('should create a Removed case status successfully', async () => {
         const statusName = '1'.repeat(50)
         const description = '1'.repeat(200)

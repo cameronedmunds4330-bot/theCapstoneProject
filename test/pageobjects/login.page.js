@@ -27,10 +27,7 @@ class LoginPage extends BasePage {
     }
 
     async login(username = 'cameron.edmunds4330@stu.mtec.edu', password = 'Successful!4321') {
-        // FIX for 01-account-menu failure:
-        // If the account menu button is already visible, we are already logged in.
-        // This happens when the previous test navigated away but the session is still active.
-        // In that case, just navigate back to the home page and skip the login form entirely.
+ 
         const alreadyLoggedIn = await this.accountMenuButton.isDisplayed().catch(() => false)
         if (alreadyLoggedIn) {
             console.log('✓ Already logged in - skipping login form')
@@ -39,7 +36,7 @@ class LoginPage extends BasePage {
             return
         }
 
-        // Wait for the login form to appear
+
         await this.usernameInput.waitForDisplayed({ timeout: 15000 })
 
         // Clear and enter username
@@ -55,7 +52,6 @@ class LoginPage extends BasePage {
         // Click submit
         await this.submitButton.click()
 
-        // Wait for login to complete - the account menu button only appears after a successful login
         try {
             await this.accountMenuButton.waitForDisplayed({
                 timeout: 25000,
