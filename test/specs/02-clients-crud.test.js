@@ -17,36 +17,41 @@ describe('Clients CRUD Operations - Test Case 2', () => {
     // ══════════════════════════════════════════════════════════
     it('should create a new client with all details and add a contact', async () => {
         await ClientsPage.clickCreate()
-        
+
+        // PDF pages 3-4: exact field values used in the test case doc
         const clientData = {
             name: 'test',
             address: 'test 123',
             city: 'test city',
             state: 'utah',
             zip: '84095',
-            url: 'www.test.com',
+            url: 'www.test.com',      // plain string — NOT a markdown link
             phone: '(801) 888-8888'
         }
-        
+
         await ClientsPage.createClient(clientData)
-        
-        // Verify client was created
+
+        // Wait for the creation success toast
         const successToast = $('.fui-Toast')
+        await successToast.waitForDisplayed({ timeout: 10000 })
         await expect(successToast).toBeDisplayed()
-        
-        await browser.pause(1000)
-        
-        // Search for the created client
+
+        await browser.pause(1500)
+
+        // Search for the created client and verify it appears
         await ClientsPage.searchFor('test')
-        await browser.pause(1000)
-        
+        await browser.pause(1500)
+
         const clientRow = $('//*[contains(text(), "test")]')
+        await clientRow.waitForDisplayed({ timeout: 10000 })
         await expect(clientRow).toBeDisplayed()
-        
-        // Open client to edit and add contact
+
+        // Open the 3-dot menu and click Edit
         await ClientsPage.openClientMenu('test')
         await ClientsPage.clickEdit()
-        
+        await browser.pause(1500)   // wait for the slide-out drawer to open
+
+        // PDF pages 5-6: contact details used in the test case doc
         const contactData = {
             name: 'test',
             title: 'Parent',
@@ -57,39 +62,52 @@ describe('Clients CRUD Operations - Test Case 2', () => {
             zip: '84095',
             phone: '(801) 777-7777'
         }
-        
+
         await ClientsPage.addContact(contactData)
-        
-        // Go back to clients list
+
+        // Go back to the clients list
         await ClientsPage.goBackToClientsList()
-        
-        // Clean up - delete the test client
+        await browser.pause(1500)
+
+        // Clean up — find the client and delete it
         await ClientsPage.searchFor('test')
+        await browser.pause(1000)
         await ClientsPage.openClientMenu('test')
         await ClientsPage.clickDelete()
         await ClientsPage.confirmDelete()
-        
-        // Verify deletion
+
+        // Verify the deletion toast appears
         const deleteToast = $('.fui-Toast')
+        await deleteToast.waitForDisplayed({ timeout: 10000 })
         await expect(deleteToast).toBeDisplayed()
     })
 
     // ══════════════════════════════════════════════════════════
     // TC-07: Verify Select All Functionality
     // Testing Technique: Positive Testing, UI Interaction
+    // Jira: MTQA-5712 (Test Case 13 in PDF)
     // ══════════════════════════════════════════════════════════
     it('should select and deselect all clients using checkbox', async () => {
-        await ClientsPage.selectAllCheckbox.waitForDisplayed({ timeout: 10000 })
-        
+        // Make sure the table has loaded before interacting with the checkbox
+        await browser.waitUntil(
+            async () => (await ClientsPage.getTableRowCount()) > 0,
+            { timeout: 15000, timeoutMsg: 'Client table did not load within 15 seconds' }
+        )
+
+        await ClientsPage.selectAllCheckbox.waitForDisplayed({ timeout: 15000 })
+        await ClientsPage.selectAllCheckbox.waitForClickable({ timeout: 15000 })
+
         // Select all
         await ClientsPage.selectAllClients()
-        
+        await browser.pause(500)
+
         const isChecked = await ClientsPage.selectAllCheckbox.isSelected()
         expect(isChecked).toBe(true)
-        
+
         // Deselect all
         await ClientsPage.selectAllClients()
-        
+        await browser.pause(500)
+
         const isUnchecked = await ClientsPage.selectAllCheckbox.isSelected()
         expect(isUnchecked).toBe(false)
     })
