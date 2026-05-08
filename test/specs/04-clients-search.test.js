@@ -78,7 +78,7 @@ describe('Clients Search Functionality - Test Cases 4 & 5', () => {
         const initialCount = await ClientsPage.getTableRowCount()
         expect(initialCount).toBeGreaterThan(0)
 
-        await ClientsPage.searchFor('Cameron')
+        await ClientsPage.searchFor('Test 123')
         await browser.pause(1500)
 
         const filteredCount = await ClientsPage.getTableRowCount()

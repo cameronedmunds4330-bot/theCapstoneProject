@@ -1,73 +1,71 @@
-import { expect } from '@wdio/globals'
-import LoginPage from '../pageobjects/login.page.js'
-import AccountMenuPage from '../pageobjects/account-menu.page.js'
-import SettingsPage from '../pageobjects/settings.page.js'
+import { expect, browser } from '@wdio/globals';
+import LoginPage from '../pageobjects/login.page.js';
 
+// ══════════════════════════════════════════════════════════
+// TC-1: User Account Menu
+// Jira: MTQA-5429
+// ══════════════════════════════════════════════════════════
 describe('User Account Menu - Test Case 1', () => {
 
-    beforeEach(async () => {
-        await LoginPage.open()
-        await LoginPage.login()
-    })
+    before(async () => {
+        await LoginPage.open();
+        await LoginPage.login();
+    });
 
-    // TC-01: Open User Account Menu
-    it('should open the user account menu successfully', async () => {
-        await AccountMenuPage.openMenu()
+    it('MTQA-5429: should open the account menu and navigate to settings', async () => {
+        const accountMenuBtn = $('[data-testid="menu-account-popover-button"]');
+        await accountMenuBtn.waitForClickable({ timeout: 10000 });
+        await accountMenuBtn.click();
 
-        await expect(AccountMenuPage.settingsButton).toBeDisplayed()
-        await expect(AccountMenuPage.logoutButton).toBeDisplayed()
-    })
+        const settingsBtn = $('[data-testid="account-control-settings-button"]');
+        await settingsBtn.waitForClickable({ timeout: 8000 });
+        await settingsBtn.click();
 
-    // TC-02: Navigate to Settings
-    it('should navigate to Settings page from account menu', async () => {
-        await AccountMenuPage.clickSettings()
+        await expect(browser).toHaveUrl('https://app.thecasework.com/account/settings');
+    });
 
-        const currentUrl = await browser.getUrl()
-        expect(currentUrl).toContain('/account/settings')
+    it('MTQA-5429: should open and close the Terms of Service page', async () => {
+        const accountMenuBtn = $('[data-testid="menu-account-popover-button"]');
+        await accountMenuBtn.waitForClickable({ timeout: 10000 });
+        await accountMenuBtn.click();
 
-        const isOnSettings = await SettingsPage.isOnSettingsPage()
-        expect(isOnSettings).toBe(true)
-    })
+        const tosBtn = $('[data-testid="menu-terms-of-service-link"]');
+        await tosBtn.waitForClickable({ timeout: 8000 });
+        await tosBtn.click();
 
-    // TC-03: Open Terms of Service
-    it('should open Terms of Service dialog and close it', async () => {
-        await AccountMenuPage.clickTermsOfService()
+        const closeBtn = $('[data-testid="login-tos-close"]');
+        await closeBtn.waitForClickable({ timeout: 8000 });
+        await closeBtn.click();
+        await closeBtn.waitForDisplayed({ timeout: 5000, reverse: true });
+    });
 
-        const tosHeader = $('//*[contains(text(), "Terms of Service")]')
-        await expect(tosHeader).toBeDisplayed()
+    it('MTQA-5429: should open and close the Privacy Policy page', async () => {
+        const accountMenuBtn = $('[data-testid="menu-account-popover-button"]');
+        await accountMenuBtn.waitForClickable({ timeout: 10000 });
+        await accountMenuBtn.click();
 
-        await AccountMenuPage.closeDialog()
-        await browser.pause(1000)
+        const privacyBtn = $('[data-testid="menu-privacy-policy-link"]');
+        await privacyBtn.waitForClickable({ timeout: 8000 });
+        await privacyBtn.click();
 
-        const isStillDisplayed = await tosHeader.isDisplayedInViewport().catch(() => false)
-        expect(isStillDisplayed).toBe(false)
-    })
+        const closeBtn = $('[data-testid="login-tos-close"]');
+        await closeBtn.waitForClickable({ timeout: 8000 });
+        await closeBtn.click();
+        await closeBtn.waitForDisplayed({ timeout: 5000, reverse: true });
+    });
 
-    // TC-04: Open Privacy Policy
-    it('should open Privacy Policy dialog and close it', async () => {
-        await AccountMenuPage.clickPrivacyPolicy()
+    it('MTQA-5429: should open and close the Data Processing Agreement page', async () => {
+        const accountMenuBtn = $('[data-testid="menu-account-popover-button"]');
+        await accountMenuBtn.waitForClickable({ timeout: 10000 });
+        await accountMenuBtn.click();
 
-        const privacyHeader = $('//*[contains(text(), "Privacy Policy")]')
-        await expect(privacyHeader).toBeDisplayed()
+        const dpaBtn = $('[data-testid="menu-data-processing-agreement-link"]');
+        await dpaBtn.waitForClickable({ timeout: 8000 });
+        await dpaBtn.click();
 
-        await AccountMenuPage.closeDialog()
-        await browser.pause(1000)
-
-        const isStillDisplayed = await privacyHeader.isDisplayedInViewport().catch(() => false)
-        expect(isStillDisplayed).toBe(false)
-    })
-
-    // TC-05: Open Data Processing Agreement
-    it('should open Data Processing Agreement dialog and close it', async () => {
-        await AccountMenuPage.clickDataProcessingAgreement()
-
-        const dpaHeader = $('//*[contains(text(), "Data Processing Agreement")]')
-        await expect(dpaHeader).toBeDisplayed()
-
-        await AccountMenuPage.closeDialog()
-        await browser.pause(1000)
-
-        const isStillDisplayed = await dpaHeader.isDisplayedInViewport().catch(() => false)
-        expect(isStillDisplayed).toBe(false)
-    })
-})
+        const closeBtn = $('[data-testid="login-tos-close"]');
+        await closeBtn.waitForClickable({ timeout: 8000 });
+        await closeBtn.click();
+        await closeBtn.waitForDisplayed({ timeout: 5000, reverse: true });
+    });
+});
