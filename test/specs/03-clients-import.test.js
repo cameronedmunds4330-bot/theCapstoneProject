@@ -10,11 +10,8 @@ describe('Clients Import - Test Case 3', () => {
         await ClientsPage.navigate()
     })
 
-    // ══════════════════════════════════════════════════════════
     // TC-08: Import 5 Clients and Delete
-    // Testing Technique: Positive Testing, Data Import, Bulk Operations
-    // Jira: MTQA-5539
-    // ══════════════════════════════════════════════════════════
+
     it('should import 5 clients from CSV and delete them', async () => {
         await ClientsPage.importCSV('clients_5.csv')
         
@@ -34,10 +31,8 @@ describe('Clients Import - Test Case 3', () => {
         await expect(deleteToast).toBeDisplayed()
     })
 
-    // ══════════════════════════════════════════════════════════
-    // TC-09: Import 50 Clients and Delete
-    // Testing Technique: Positive Testing, Performance Testing, Boundary Testing
-    // ══════════════════════════════════════════════════════════
+
+    // TC-09: 
     it('should import 50 clients from CSV and delete them', async () => {
         await ClientsPage.importCSV('clients_50.csv')
         
@@ -53,11 +48,7 @@ describe('Clients Import - Test Case 3', () => {
         const deleteToast = $('.fui-Toast')
         await expect(deleteToast).toBeDisplayed()
     })
-
-    // ══════════════════════════════════════════════════════════
-    // TC-10: Import 100 Clients and Delete
-    // Testing Technique: Positive Testing, Performance Testing, Boundary Testing
-    // ══════════════════════════════════════════════════════════
+    //TC-10:
     it('should import 100 clients from CSV and delete them', async () => {
         await ClientsPage.importCSV('clients_100.csv')
         

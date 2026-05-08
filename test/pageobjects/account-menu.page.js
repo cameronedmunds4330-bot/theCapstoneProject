@@ -2,43 +2,38 @@ import BasePage from './base.page.js'
 
 class AccountMenuPage extends BasePage {
 
-    // ── Selectors — verified against real DOM in PDF ──────────────────────────
 
     get menuButton() {
         return $('[data-testid="menu-account-popover-button"]')
     }
 
-    // PDF page 1: data-testid="account-control-settings-button"
     get settingsButton() {
         return $('[data-testid="account-control-settings-button"]')
     }
 
-    // PDF page 14: data-testid="menu-logout-button"
     get logoutButton() {
         return $('[data-testid="menu-logout-button"]')
     }
 
-    // PDF page 1: data-testid="menu-terms-of-service-link"
+
     get termsOfServiceButton() {
         return $('[data-testid="menu-terms-of-service-link"]')
     }
 
-    // PDF page 2: data-testid="menu-privacy-policy-link"
     get privacyPolicyButton() {
         return $('[data-testid="menu-privacy-policy-link"]')
     }
 
-    // PDF page 2: data-testid="menu-data-processing-agreement-link"
+
     get dataProcessingAgreementButton() {
         return $('[data-testid="menu-data-processing-agreement-link"]')
     }
 
-    // PDF pages 2, 6, 10: all three dialogs share data-testid="login-tos-close"
     get dialogCloseButton() {
         return $('[data-testid="login-tos-close"]')
     }
 
-    // ── Open the account menu ─────────────────────────────────────────────────
+    // Open the account menu 
 
     async openMenu() {
         await this.menuButton.waitForDisplayed({ timeout: 15000 })
@@ -47,7 +42,6 @@ class AccountMenuPage extends BasePage {
         await browser.pause(600)
     }
 
-    // ── Navigate to Settings ──────────────────────────────────────────────────
 
     async clickSettings() {
         await this.openMenu()
@@ -56,7 +50,6 @@ class AccountMenuPage extends BasePage {
         await browser.pause(1500)
     }
 
-    // ── Legal dialogs ─────────────────────────────────────────────────────────
 
     async clickTermsOfService() {
         await this.openMenu()
@@ -79,15 +72,13 @@ class AccountMenuPage extends BasePage {
         await browser.pause(800)
     }
 
-    // ── Close dialog — all three share the same close button testid ──────────
-
     async closeDialog() {
         await this.dialogCloseButton.waitForDisplayed({ timeout: 10000 })
         await this.dialogCloseButton.click()
         await browser.pause(600)
     }
 
-    // ── Logout ────────────────────────────────────────────────────────────────
+    // Logout 
 
     async logout() {
         await this.openMenu()

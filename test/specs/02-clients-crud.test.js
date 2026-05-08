@@ -19,7 +19,7 @@ describe('Clients CRUD Operations - Test Case 2', () => {
             city: 'test city',
             state: 'utah',
             zip: '84095',
-            url: 'www.test.com',      
+            url: 'www.test.com',
             phone: '(801) 888-8888'
         }
 
@@ -43,14 +43,12 @@ describe('Clients CRUD Operations - Test Case 2', () => {
         // Open the 3-dot menu and click Edit
         await ClientsPage.openClientMenu('test')
         await ClientsPage.clickEdit()
-        await browser.pause(1500)   // wait for the slide-out drawer to open
+        await browser.pause(3000)   // wait for the slide-out drawer to fully open
 
-        // PDF pages 5-6: contact details used in the test case doc
         const contactData = {
             name: 'test',
-            title: 'Parent',
             email: 'test@testing.com',
-            address: '123 Fake St',
+            address: 'test 123',
             city: 'test city',
             state: 'utah',
             zip: '84095',
@@ -83,8 +81,7 @@ describe('Clients CRUD Operations - Test Case 2', () => {
             { timeout: 15000, timeoutMsg: 'Client table did not load within 15 seconds' }
         )
 
-        await ClientsPage.selectAllCheckbox.waitForDisplayed({ timeout: 15000 })
-        await ClientsPage.selectAllCheckbox.waitForClickable({ timeout: 15000 })
+        await ClientsPage.selectAllCheckbox.waitForExist({ timeout: 15000 })
 
         // Select all
         await ClientsPage.selectAllClients()
