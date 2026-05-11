@@ -11,6 +11,7 @@ export const config = {
     
     capabilities: [{
         browserName: 'chrome',
+        webSocketUrl: false,
         'goog:chromeOptions': {
             args: [
                 '--disable-gpu',

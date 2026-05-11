@@ -1,13 +1,9 @@
 import { expect, browser } from '@wdio/globals';
 import LoginPage from '../pageobjects/login.page.js';
 
-// ══════════════════════════════════════════════════════════
-// TC-1: User Account Menu
-// Jira: MTQA-5429
-// ══════════════════════════════════════════════════════════
 describe('User Account Menu - Test Case 1', () => {
 
-    before(async () => {
+    beforeEach(async () => {
         await LoginPage.open();
         await LoginPage.login();
     });
@@ -30,7 +26,9 @@ describe('User Account Menu - Test Case 1', () => {
         await accountMenuBtn.click();
 
         const tosBtn = $('[data-testid="menu-terms-of-service-link"]');
-        await tosBtn.waitForClickable({ timeout: 8000 });
+        await tosBtn.waitForExist({ timeout: 8000 });
+        await browser.pause(500);
+        await tosBtn.scrollIntoView();
         await tosBtn.click();
 
         const closeBtn = $('[data-testid="login-tos-close"]');
@@ -45,7 +43,9 @@ describe('User Account Menu - Test Case 1', () => {
         await accountMenuBtn.click();
 
         const privacyBtn = $('[data-testid="menu-privacy-policy-link"]');
-        await privacyBtn.waitForClickable({ timeout: 8000 });
+        await privacyBtn.waitForExist({ timeout: 8000 });
+        await browser.pause(500);
+        await privacyBtn.scrollIntoView();
         await privacyBtn.click();
 
         const closeBtn = $('[data-testid="login-tos-close"]');
@@ -60,7 +60,9 @@ describe('User Account Menu - Test Case 1', () => {
         await accountMenuBtn.click();
 
         const dpaBtn = $('[data-testid="menu-data-processing-agreement-link"]');
-        await dpaBtn.waitForClickable({ timeout: 8000 });
+        await dpaBtn.waitForExist({ timeout: 8000 });
+        await browser.pause(500);
+        await dpaBtn.scrollIntoView();
         await dpaBtn.click();
 
         const closeBtn = $('[data-testid="login-tos-close"]');

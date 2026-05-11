@@ -55,7 +55,6 @@ class ClientsPage extends BasePage {
     get contactCityInput()        { return $('[data-testid="select-contacts-city-input"]') }
     get contactStateInput()       { return $('[data-testid="select-contacts-state-input"]') }
     get contactZipInput()         { return $('[data-testid="select-contacts-zip-input"]') }
-    // All phone-panel add buttons share the same testid — use the last one visible (contact form is below client form)
     get contactAddPhoneButton()   { return $$('[data-testid="phone-panel-add-button"]') }
     get addNewContactButton()     { return $('[data-testid="select-contacts-submit-button"]') }
     get breadcrumbHomeButton()    { return $('[data-testid="parties-page-breadcrumb-home-button"]') }
@@ -215,14 +214,12 @@ class ClientsPage extends BasePage {
     }
 
     async addContact(contactData) {
-        // Wait for the edit drawer to fully render
         const addBtn = this.addContactButton
         await addBtn.waitForExist({ timeout: 15000 })
         await addBtn.waitForClickable({ timeout: 15000 })
         await addBtn.click()
         await this.pause(1500)
 
-        // createNewContactSwitch is an input — waitForExist + click
         const switchEl = this.createNewContactSwitch
         await switchEl.waitForExist({ timeout: 15000 })
         await switchEl.click()
@@ -236,8 +233,6 @@ class ClientsPage extends BasePage {
         await this.waitAndSetValue(this.contactZipInput, contactData.zip)
         await this.pause(500)
 
-        // Multiple phone-panel-add-button elements exist on the page (one per panel).
-        // The contact form's button is the last one — grab all and click the last.
         await browser.waitUntil(
             async () => {
                 const btns = await $$('[data-testid="phone-panel-add-button"]')
@@ -269,6 +264,34 @@ class ClientsPage extends BasePage {
         await this.pause(1000)
     }
 
+    async closeImportDialog() {
+        // Try the dedicated close/done button on the import dialog first
+        const selectors = [
+            '[data-testid="import-parties-close-button"]',
+            '[data-testid="import-parties-done-button"]',
+            'button[aria-label="Close"]',
+            '.fui-DialogBody button[type="button"]:last-child',
+            'button=Close',
+            'button=Done'
+        ]
+        for (const sel of selectors) {
+            try {
+                const btn = $(sel)
+                const exists = await btn.isExisting().catch(() => false)
+                if (exists) {
+                    const visible = await btn.isDisplayed().catch(() => false)
+                    if (visible) {
+                        await btn.click()
+                        await browser.pause(1000)
+                        return
+                    }
+                }
+            } catch (_) { /* try next */ }
+        }
+        // Last resort — press Escape to close the dialog
+        await browser.keys('Escape')
+        await browser.pause(1000)
+    }
 
     async importCSV(filename) {
         const filePath = path.join(process.cwd(), 'test/data', filename)

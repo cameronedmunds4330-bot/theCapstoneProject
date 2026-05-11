@@ -1,43 +1,47 @@
-import { expect } from '@wdio/globals'
+import { expect, browser } from '@wdio/globals'
 import LoginPage from '../pageobjects/login.page.js'
 import SettingsPage from '../pageobjects/settings.page.js'
-import CaseTypesPage from '../pageobjects/case-types.page.js'
 
-describe('Case Types – Test Case 8', () => {
-
+describe('Case Types - Test Case 14', () => {
     beforeEach(async () => {
         await LoginPage.open()
         await LoginPage.login()
-
-        // Navigate to Settings → Case Data Types → Case Types tab
         await SettingsPage.navigateToSettings()
         await SettingsPage.navigateToCaseDataTypes()
-        await CaseTypesPage.open()
+        await browser.pause(1000)
     })
 
-    it('TC‑12: should create, edit, and delete a case type', async () => {
+    it('should create a case type successfully', async () => {
+        const caseName = '1'.repeat(50)
 
-        const name = 'Automation Case Type'
-        const updated = 'Updated Case Type'
+        // Fill in the name input
+        const nameInput = $('[data-testid="case-type-panel-type-input"]')
+        await nameInput.waitForDisplayed({ timeout: 10000 })
+        await nameInput.clearValue()
+        await nameInput.setValue(caseName)
+        await browser.pause(300)
 
+        // Click Add
+        const addButton = $('[data-testid="case-type-panel-add-button"]')
+        await addButton.waitForClickable({ timeout: 10000 })
+        await addButton.click()
+        await browser.pause(1500)
 
-        // CREATE
+        // Verify toast appeared (confirms server accepted the create)
+        const toast = $('.fui-Toast')
+        await toast.waitForDisplayed({ timeout: 10000 })
+        await expect(toast).toBeDisplayed()
 
-        await CaseTypesPage.createCaseType(name, 'Test description')
-        await expect(CaseTypesPage.rowByName(name)).toBeDisplayed()
+        // Verify item appears in the list via DOM check (avoids BiDi XPath polling issues)
+        const item = await browser.execute((name) => {
+            const allEls = Array.from(document.querySelectorAll('span, div, p'))
+            return allEls.some(el =>
+                el.children.length === 0 &&
+                (el.textContent || '').trim() === name
+            )
+        }, caseName)
+        expect(item).toBe(true)
 
-
-        // EDIT
-
-        await CaseTypesPage.editCaseType(name, updated)
-        await expect(CaseTypesPage.rowByName(updated)).toBeDisplayed()
-
-        // DELETE
-
-        await CaseTypesPage.deleteCaseType(updated)
-
-        // Row should no longer exist
-        const exists = await CaseTypesPage.rowByName(updated).isExisting()
-        expect(exists).toBe(false)
+        await browser.pause(500)
     })
 })

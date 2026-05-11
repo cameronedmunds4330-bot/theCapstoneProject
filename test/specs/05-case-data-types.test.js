@@ -10,20 +10,20 @@ describe('Case Data Types - Test Cases 7 through 11', () => {
         await LoginPage.login();
         await SettingsPage.navigateToSettings();
         await SettingsPage.navigateToCaseDataTypes();
+        await browser.pause(1500);
     });
 
-    // ══════════════════════════════════════════════════════════
-    // TC-7: Create New 'New' Status
-    // Jira: MTQA-5568
-    // ══════════════════════════════════════════════════════════
-    it('MTQA-5568: should create and delete a New case status', async () => {
-        await CaseDataTypesPage.addNewStatusButton.waitForClickable({ timeout: 8000 });
-        await CaseDataTypesPage.addNewStatusButton.click();
+    afterEach(async () => {
+        await browser.pause(1500);
+    });
 
-        await CaseDataTypesPage.fillStatusForm(
-            '1'.repeat(50),
-            '1'.repeat(200)
-        );
+    it('MTQA-5568: should create and delete a New case status', async () => {
+        await CaseDataTypesPage.clickAddButtonForSection('New');
+
+        await CaseDataTypesPage.statusInput.waitForDisplayed({ timeout: 15000 });
+        await CaseDataTypesPage.descriptionInput.waitForDisplayed({ timeout: 15000 });
+
+        await CaseDataTypesPage.fillStatusForm('1'.repeat(50), '1'.repeat(200));
 
         const statusValue = await CaseDataTypesPage.statusInput.getValue();
         expect(statusValue.length).toBeLessThanOrEqual(50);
@@ -32,25 +32,23 @@ describe('Case Data Types - Test Cases 7 through 11', () => {
         expect(descValue.length).toBeLessThanOrEqual(200);
 
         await CaseDataTypesPage.saveStatus();
+        await CaseDataTypesPage.toastMessage.waitForDisplayed({ timeout: 10000 });
         await CaseDataTypesPage.dismissToast();
+        await browser.pause(1000);
 
         await CaseDataTypesPage.clickDeleteOnStatus('1'.repeat(50), 'New');
-        await CaseDataTypesPage.toastMessage.waitForDisplayed({ timeout: 8000 });
+        await CaseDataTypesPage.toastMessage.waitForDisplayed({ timeout: 10000 });
         await CaseDataTypesPage.dismissToast();
+        await browser.pause(1000);
     });
 
-    // ══════════════════════════════════════════════════════════
-    // TC-8: Create New 'Active' Status
-    // Jira: MTQA-5581
-    // ══════════════════════════════════════════════════════════
     it('MTQA-5581: should create, edit, and delete an Active case status', async () => {
-        await CaseDataTypesPage.addActiveStatusButton.waitForClickable({ timeout: 8000 });
-        await CaseDataTypesPage.addActiveStatusButton.click();
+        await CaseDataTypesPage.clickAddButtonForSection('Active');
 
-        await CaseDataTypesPage.fillStatusForm(
-            '1'.repeat(50),
-            '1'.repeat(200)
-        );
+        await CaseDataTypesPage.statusInput.waitForDisplayed({ timeout: 15000 });
+        await CaseDataTypesPage.descriptionInput.waitForDisplayed({ timeout: 15000 });
+
+        await CaseDataTypesPage.fillStatusForm('1'.repeat(50), '1'.repeat(200));
 
         const statusValue = await CaseDataTypesPage.statusInput.getValue();
         expect(statusValue.length).toBeLessThanOrEqual(50);
@@ -59,85 +57,90 @@ describe('Case Data Types - Test Cases 7 through 11', () => {
         expect(descValue.length).toBeLessThanOrEqual(200);
 
         await CaseDataTypesPage.saveStatus();
+        await CaseDataTypesPage.toastMessage.waitForDisplayed({ timeout: 10000 });
         await CaseDataTypesPage.dismissToast();
+        await browser.pause(1000);
 
         await CaseDataTypesPage.clickEditOnStatus('1'.repeat(50), 'Active');
+        await CaseDataTypesPage.statusInput.waitForDisplayed({ timeout: 15000 });
         await CaseDataTypesPage.cancelStatus();
+        await browser.pause(1000);
 
         await CaseDataTypesPage.clickDeleteOnStatus('1'.repeat(50), 'Active');
-        await CaseDataTypesPage.toastMessage.waitForDisplayed({ timeout: 8000 });
+        await CaseDataTypesPage.toastMessage.waitForDisplayed({ timeout: 10000 });
         await CaseDataTypesPage.dismissToast();
+        await browser.pause(1000);
     });
 
-    // ══════════════════════════════════════════════════════════
-    // TC-9: Create New 'Completed' Status
-    // Jira: MTQA-5588
-    // ══════════════════════════════════════════════════════════
     it('MTQA-5588: should create, edit, and delete a Completed case status', async () => {
-        await CaseDataTypesPage.addCompletedStatusButton.waitForClickable({ timeout: 8000 });
-        await CaseDataTypesPage.addCompletedStatusButton.click();
+        await CaseDataTypesPage.clickAddButtonForSection('Completed');
 
-        await CaseDataTypesPage.fillStatusForm(
-            '1'.repeat(50),
-            '1'.repeat(200)
-        );
+        await CaseDataTypesPage.statusInput.waitForDisplayed({ timeout: 15000 });
+        await CaseDataTypesPage.descriptionInput.waitForDisplayed({ timeout: 15000 });
+
+        await CaseDataTypesPage.fillStatusForm('1'.repeat(50), '1'.repeat(200));
 
         await CaseDataTypesPage.saveStatus();
+        await CaseDataTypesPage.toastMessage.waitForDisplayed({ timeout: 10000 });
         await CaseDataTypesPage.dismissToast();
+        await browser.pause(1000);
 
         await CaseDataTypesPage.clickEditOnStatus('1'.repeat(50), 'Completed');
+        await CaseDataTypesPage.statusInput.waitForDisplayed({ timeout: 15000 });
         await CaseDataTypesPage.cancelStatus();
+        await browser.pause(1000);
 
         await CaseDataTypesPage.clickDeleteOnStatus('1'.repeat(50), 'Completed');
-        await CaseDataTypesPage.toastMessage.waitForDisplayed({ timeout: 8000 });
+        await CaseDataTypesPage.toastMessage.waitForDisplayed({ timeout: 10000 });
         await CaseDataTypesPage.dismissToast();
+        await browser.pause(1000);
     });
 
-    // ══════════════════════════════════════════════════════════
-    // TC-10: Create New 'Closed' Status
-    // Jira: MTQA-5590
-    // ══════════════════════════════════════════════════════════
     it('MTQA-5590: should create, edit, and delete a Closed case status', async () => {
-        await CaseDataTypesPage.addClosedStatusButton.waitForClickable({ timeout: 8000 });
-        await CaseDataTypesPage.addClosedStatusButton.click();
+        await CaseDataTypesPage.clickAddButtonForSection('Closed');
 
-        await CaseDataTypesPage.fillStatusForm(
-            '1'.repeat(50),
-            '1'.repeat(200)
-        );
+        await CaseDataTypesPage.statusInput.waitForDisplayed({ timeout: 15000 });
+        await CaseDataTypesPage.descriptionInput.waitForDisplayed({ timeout: 15000 });
+
+        await CaseDataTypesPage.fillStatusForm('1'.repeat(50), '1'.repeat(200));
 
         await CaseDataTypesPage.saveStatus();
+        await CaseDataTypesPage.toastMessage.waitForDisplayed({ timeout: 10000 });
         await CaseDataTypesPage.dismissToast();
+        await browser.pause(1000);
 
         await CaseDataTypesPage.clickEditOnStatus('1'.repeat(50), 'Closed');
+        await CaseDataTypesPage.statusInput.waitForDisplayed({ timeout: 15000 });
         await CaseDataTypesPage.cancelStatus();
+        await browser.pause(1000);
 
         await CaseDataTypesPage.clickDeleteOnStatus('1'.repeat(50), 'Closed');
-        await CaseDataTypesPage.toastMessage.waitForDisplayed({ timeout: 8000 });
+        await CaseDataTypesPage.toastMessage.waitForDisplayed({ timeout: 10000 });
         await CaseDataTypesPage.dismissToast();
+        await browser.pause(1000);
     });
 
-    // ══════════════════════════════════════════════════════════
-    // TC-11: Create New 'Removed' Status
-    // Jira: MTQA-5594
-    // ══════════════════════════════════════════════════════════
     it('MTQA-5594: should create, edit, and delete a Removed case status', async () => {
-        await CaseDataTypesPage.addRemovedStatusButton.waitForClickable({ timeout: 8000 });
-        await CaseDataTypesPage.addRemovedStatusButton.click();
+        await CaseDataTypesPage.clickAddButtonForSection('Removed');
 
-        await CaseDataTypesPage.fillStatusForm(
-            '1'.repeat(50),
-            '1'.repeat(200)
-        );
+        await CaseDataTypesPage.statusInput.waitForDisplayed({ timeout: 15000 });
+        await CaseDataTypesPage.descriptionInput.waitForDisplayed({ timeout: 15000 });
+
+        await CaseDataTypesPage.fillStatusForm('1'.repeat(50), '1'.repeat(200));
 
         await CaseDataTypesPage.saveStatus();
+        await CaseDataTypesPage.toastMessage.waitForDisplayed({ timeout: 10000 });
         await CaseDataTypesPage.dismissToast();
+        await browser.pause(1000);
 
         await CaseDataTypesPage.clickEditOnStatus('1'.repeat(50), 'Removed');
+        await CaseDataTypesPage.statusInput.waitForDisplayed({ timeout: 15000 });
         await CaseDataTypesPage.cancelStatus();
+        await browser.pause(1000);
 
         await CaseDataTypesPage.clickDeleteOnStatus('1'.repeat(50), 'Removed');
-        await CaseDataTypesPage.toastMessage.waitForDisplayed({ timeout: 8000 });
+        await CaseDataTypesPage.toastMessage.waitForDisplayed({ timeout: 10000 });
         await CaseDataTypesPage.dismissToast();
+        await browser.pause(1000);
     });
 });

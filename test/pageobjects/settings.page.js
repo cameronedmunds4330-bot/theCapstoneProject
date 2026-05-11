@@ -1,6 +1,7 @@
 import BasePage from './base.page.js'
 
 class SettingsPage extends BasePage {
+
     get accountSettingsNav() {
         return $('[data-testid="vert-nav-account-settings"]')
     }
