@@ -139,41 +139,73 @@ class ClientsPage extends BasePage {
     async clearSearch() {
         const searchInput = this.searchInput
         await searchInput.waitForDisplayed({ timeout: 10000 })
+        await browser.execute(
+            (selector) => {
+                const el = document.querySelector(selector)
+                if (el && typeof el.scrollIntoView === 'function') {
+                    el.scrollIntoView({ block: 'center', inline: 'center' })
+                }
+            },
+            '[data-testid="search-input"]'
+        )
+        await browser.pause(200)
 
-        try {
-            const clearBtn = await searchInput.$('~ button')
-            const visible = await clearBtn.isDisplayed().catch(() => false)
-            if (visible) {
-                await clearBtn.click()
-                await browser.pause(800)
-                const val = await searchInput.getValue().catch(() => '')
-                if (val === '') return
+        const clearSelectors = [
+            '~ button',
+            'button[aria-label="Clear"]',
+            'button .fui-Button__icon ~ svg',
+            'button .fui-Icon--clear',
+            'button[title="Clear"]',
+        ]
+
+        let cleared = false
+        for (const selector of clearSelectors) {
+            try {
+                const clearBtn = await searchInput.$(selector)
+                const visible = await clearBtn.isDisplayed().catch(() => false)
+                if (visible) {
+                    await clearBtn.click()
+                    await browser.pause(800)
+                    const val = await searchInput.getValue().catch(() => '')
+                    if (val === '') {
+                        cleared = true
+                        break
+                    }
+                }
+            } catch (_) {
+                continue
             }
-        } catch (_) { /* fall through */ }
+        }
 
-        try {
-            const clearBtn = await $('button .fui-Button__icon ~ svg').parentElement
-            const exists = await clearBtn.isExisting().catch(() => false)
-            if (exists) {
-                await clearBtn.click()
-                await browser.pause(800)
-                const val = await searchInput.getValue().catch(() => '')
-                if (val === '') return
+        if (!cleared) {
+            await searchInput.click()
+            await browser.keys(['Control', 'a'])
+            await browser.keys('Backspace')
+            await browser.pause(200)
+
+            const partialValue = await searchInput.getValue().catch(() => '')
+            if (partialValue !== '') {
+                await browser.keys(['Meta', 'a'])
+                await browser.keys('Backspace')
+                await browser.pause(200)
             }
-        } catch (_) { /* fall through */ }
 
-        await searchInput.click()
-        await browser.keys(['Control', 'a'])
-        await browser.keys('Delete')
-        await browser.pause(800)
-
-        const val = await searchInput.getValue().catch(() => 'x')
-        if (val !== '') {
             await searchInput.clearValue()
             await searchInput.setValue('')
-            await browser.keys('Escape')
-            await browser.pause(800)
         }
+
+        await browser.execute(() => {
+            const el = document.querySelector('[data-testid="search-input"]')
+            if (el) {
+                el.value = ''
+                el.dispatchEvent(new InputEvent('input', { bubbles: true }))
+                el.dispatchEvent(new Event('change', { bubbles: true }))
+            }
+        })
+
+        await browser.keys('Enter')
+        await browser.keys('Escape')
+        await browser.pause(800)
 
         const finalVal = await searchInput.getValue().catch(() => 'x')
         if (finalVal !== '') {

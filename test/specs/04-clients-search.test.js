@@ -11,7 +11,7 @@ describe('Clients Search Functionality - Test Cases 4 & 5', () => {
 
         await browser.waitUntil(
             async () => (await ClientsPage.getTableRowCount()) > 0,
-            { timeout: 15000, interval: 500, timeoutMsg: 'Client table did not load' }
+            { timeout: 15000, timeoutMsg: 'Client table did not load' }
         )
     })
 
@@ -25,7 +25,6 @@ describe('Clients Search Functionality - Test Cases 4 & 5', () => {
         expect(rowCount).toBe(0)
 
         await ClientsPage.clearSearch()
-        await browser.keys(['Enter'])
         await browser.pause(1000)
 
         await browser.waitUntil(
@@ -33,7 +32,7 @@ describe('Clients Search Functionality - Test Cases 4 & 5', () => {
                 const val = await ClientsPage.searchInput.getValue()
                 return val === ''
             },
-            { timeout: 10000, interval: 500, timeoutMsg: 'Search input was not cleared' }
+            { timeout: 10000, timeoutMsg: 'Search input was not cleared' }
         )
 
         const searchValue = await ClientsPage.searchInput.getValue()
@@ -79,29 +78,28 @@ describe('Clients Search Functionality - Test Cases 4 & 5', () => {
         const initialCount = await ClientsPage.getTableRowCount()
         expect(initialCount).toBeGreaterThan(0)
 
-        await ClientsPage.searchFor('Cameron')
-        await browser.pause(2000)
+        await ClientsPage.searchFor('Test 123')
+        await browser.pause(1500)
 
         const filteredCount = await ClientsPage.getTableRowCount()
         expect(filteredCount).toBeLessThanOrEqual(initialCount)
 
-        // Clear search using clearSearch method
         await ClientsPage.clearSearch()
-        await browser.pause(2000)
 
         await browser.waitUntil(
             async () => {
                 const val = await ClientsPage.searchInput.getValue()
                 return val === ''
             },
-            { timeout: 10000, interval: 500, timeoutMsg: 'Search input was not cleared' }
+            { timeout: 10000, timeoutMsg: 'Search input was not cleared' }
         )
 
-        // Wait for the table to update after search is cleared
-        await browser.pause(3000)
+        await browser.waitUntil(
+            async () => (await ClientsPage.getTableRowCount()) >= initialCount,
+            { timeout: 15000, timeoutMsg: 'Full client list did not restore after clearing search' }
+        )
 
-        // Check that the table is restored
         const restoredCount = await ClientsPage.getTableRowCount()
-        expect(restoredCount).toBeGreaterThanOrEqual(filteredCount)
+        expect(restoredCount).toBe(initialCount)
     })
 })
